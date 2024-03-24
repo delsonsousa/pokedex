@@ -14,8 +14,6 @@ export default class MyDocument extends Document {
             href="../../public/favicon.png"
             type="image/png"
           />
-
-          <title>Pokedex</title>
         </Head>
         <body>
           <Main />
