@@ -30,6 +30,7 @@ export const Form = styled.form`
     padding: 0 10px;
 
     background-color: ${({ theme }) => theme["gray-600"]};
+    color: ${({ theme }) => theme["gray-400"]};
     border: none;
   }
 
@@ -39,6 +40,7 @@ export const Form = styled.form`
     border-radius: 6px;
 
     background-color: ${({ theme }) => theme["gray-600"]};
+    color: ${({ theme }) => theme["gray-400"]};
     border: none;
   }
 
