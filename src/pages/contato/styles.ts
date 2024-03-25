@@ -53,6 +53,12 @@ export const Form = styled.form`
     color: ${({ theme }) => theme.white};
     font-weight: bold;
     border: none;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(85%);
+      transition: filter 0.2s;
+    }
   }
 `;
 
