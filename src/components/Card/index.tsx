@@ -13,13 +13,13 @@ import {
 import Head from "next/head";
 import Loading from "../Loading";
 
-type PokemonProps = {
+interface PokemonProps {
   name: string;
   abilities: string;
   types: "fire" | "water" | "grass" | "poison";
   imageUrl: string;
   url: string;
-};
+}
 
 const Card = () => {
   const [pokemonData, setPokemonData] = useState<PokemonProps[]>([]);

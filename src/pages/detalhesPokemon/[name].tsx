@@ -1,6 +1,18 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { DetailsContainer, DetailsContent } from "./styles";
+import {
+  AbilitiesContainer,
+  ButtonContainer,
+  DetailsContainer,
+  DetailsContent,
+  PokemonDescription,
+  PokemonPhoto,
+  PowerBar,
+  PowerBarContainer,
+  StatusList,
+  Title,
+} from "./styles";
+import Loading from "@/components/Loading";
 
 interface Ability {
   ability: {
@@ -77,76 +89,111 @@ const PokemonDetails = () => {
   }, [name]);
 
   if (!pokemonDetails || !pokemonDescription) {
-    return <div>Carregando...</div>;
+    return <Loading />;
   }
+
+  const findStatByName = (name: string): Stat | undefined =>
+    pokemonDetails.stats.find((stat: Stat) => stat.stat.name === name);
+
+  const hpStat = findStatByName("hp");
+  const attackStat = findStatByName("attack");
+  const defenseStat = findStatByName("defense");
+  const specialAttackStat = findStatByName("special-attack");
+  const specialDefenseStat = findStatByName("special-defense");
+  const speedStat = findStatByName("speed");
 
   return (
     <DetailsContainer>
+      <ButtonContainer>
+        <a href={"/"}>Voltar</a>
+        <a href={"/contato"}>Contato</a>
+      </ButtonContainer>
       <DetailsContent>
-        <h1>{pokemonDetails.name}</h1>
-        <p>{pokemonDescription}</p>
+        <Title>{pokemonDetails.name}</Title>
+        <PokemonDescription>{pokemonDescription}</PokemonDescription>
       </DetailsContent>
       <DetailsContent>
-        <img
+        <PokemonPhoto
           src={pokemonDetails.sprites.front_default}
           alt={pokemonDetails.name}
         />
-        <p>Peso: {pokemonDetails.weight}</p>
-        <p>Altura: {pokemonDetails.height}</p>
-        <div>
-          <p>Habilidades:</p>
-          <ul>
-            {pokemonDetails.abilities.map((ability, index) => (
-              <li key={index}>{ability.ability.name}</li>
-            ))}
-          </ul>
-        </div>
+        <AbilitiesContainer>
+          <div>
+            <p>
+              <strong>Weight:</strong> {pokemonDetails.weight}
+            </p>
+            <p>
+              <strong>Height:</strong> {pokemonDetails.height}
+            </p>
+          </div>
+          <div>
+            <p>
+              <strong>Abilities:</strong>
+            </p>
+            <ul>
+              {pokemonDetails.abilities.map((ability, index) => (
+                <li key={index}>{ability.ability.name}</li>
+              ))}
+            </ul>
+          </div>
+        </AbilitiesContainer>
       </DetailsContent>
       <DetailsContent>
-        <p>
-          HP:{" "}
-          {
-            pokemonDetails.stats.find((stat) => stat.stat.name === "hp")
-              ?.base_stat
-          }
-        </p>
-        <p>
-          Ataque:{" "}
-          {
-            pokemonDetails.stats.find((stat) => stat.stat.name === "attack")
-              ?.base_stat
-          }
-        </p>
-        <p>
-          Defesa:{" "}
-          {
-            pokemonDetails.stats.find((stat) => stat.stat.name === "defense")
-              ?.base_stat
-          }
-        </p>
-        <p>
-          Ataque Especial:{" "}
-          {
-            pokemonDetails.stats.find(
-              (stat) => stat.stat.name === "special-attack"
-            )?.base_stat
-          }
-        </p>
-        <p>
-          Defesa Especial:{" "}
-          {
-            pokemonDetails.stats.find(
-              (stat) => stat.stat.name === "special-defense"
-            )?.base_stat
-          }
-        </p>
-        <p>
-          Velocidade:{" "}
-          {
-            pokemonDetails.stats.find((stat) => stat.stat.name === "speed")
-              ?.base_stat
-          }
-        </p>
+        <StatusList>
+          <li>
+            <p>HP: </p>
+            <PowerBarContainer>
+              <PowerBar
+                style={{ width: `${hpStat?.base_stat || 0}%` }}
+              ></PowerBar>
+            </PowerBarContainer>
+          </li>
+
+          <li>
+            <p>Attack: </p>
+            <PowerBarContainer>
+              <PowerBar
+                style={{ width: `${attackStat?.base_stat || 0}%` }}
+              ></PowerBar>
+            </PowerBarContainer>
+          </li>
+
+          <li>
+            <p>Defence: </p>
+            <PowerBarContainer>
+              <PowerBar
+                style={{ width: `${defenseStat?.base_stat || 0}%` }}
+              ></PowerBar>
+            </PowerBarContainer>
+          </li>
+
+          <li>
+            <p>Special Attack: </p>
+            <PowerBarContainer>
+              <PowerBar
+                style={{ width: `${specialAttackStat?.base_stat || 0}%` }}
+              ></PowerBar>
+            </PowerBarContainer>
+          </li>
+
+          <li>
+            <p>Special Defense: </p>
+            <PowerBarContainer>
+              <PowerBar
+                style={{ width: `${specialDefenseStat?.base_stat || 0}%` }}
+              ></PowerBar>
+            </PowerBarContainer>
+          </li>
+
+          <li>
+            <p>Speed: </p>
+            <PowerBarContainer>
+              <PowerBar
+                style={{ width: `${speedStat?.base_stat || 0}%` }}
+              ></PowerBar>
+            </PowerBarContainer>
+          </li>
+        </StatusList>
       </DetailsContent>
     </DetailsContainer>
   );

@@ -1,7 +1,7 @@
-import Card from "@/components/Card";
 import Head from "next/head";
-import { PokedexContainer, Title } from "./styles";
 import Loading from "@/components/Loading";
+import Card from "@/components/Card";
+import { PokedexContainer, Title } from "./styles";
 
 export default function Home() {
   return (

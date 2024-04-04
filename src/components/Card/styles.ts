@@ -4,14 +4,7 @@ type ElementBackgroundProps = {
   variant: "fire" | "water" | "grass";
 };
 
-const typeColors = {
-  fire: "red",
-  water: "blue",
-  grass: "green",
-  poison: "purple",
-};
-
-export const CardContainer = styled.div`
+export const CardContainer = styled.main`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
