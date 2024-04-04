@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { Form, Title, TransactionsContainer, InputContainer } from "./styles";
+import {
+  Form,
+  Title,
+  TransactionsContainer,
+  InputContainer,
+  ButtonContainer,
+} from "./styles";
 import Head from "next/head";
+import Loading from "@/components/Loading";
 
 type ContactProps = {
   nome: string;
@@ -110,9 +117,13 @@ export default function Contato() {
               border: error && !form.textArea ? "1px solid #F75A68" : "",
             }}
           />
-          <button type="submit">
-            {isSubmitting ? "Enviando..." : "Enviar"}
-          </button>
+          <ButtonContainer>
+            <a href={"/"}>Voltar</a>
+
+            <button type="submit">
+              {isSubmitting ? <Loading /> : "Enviar"}
+            </button>
+          </ButtonContainer>
         </Form>
       </TransactionsContainer>
     </>

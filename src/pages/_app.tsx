@@ -3,7 +3,7 @@ import { defaultTheme } from "@/styles/themes/default";
 import { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
@@ -14,4 +14,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default App;

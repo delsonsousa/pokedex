@@ -1,14 +1,14 @@
 import { styled } from "styled-components";
 
-export const TransactionsContainer = styled.main`
+export const TransactionsContainer = styled.div`
   width: 100%;
   max-width: 1120px;
   margin: 4rem auto 0;
   padding: 1.5rem;
   border-radius: 15px;
 
-  background-color: ${({ theme }) => theme["gray-700"]};
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.2);
+  background-color: ${({ theme }) => theme["yellow-500"]};
+  border: 3px solid ${({ theme }) => theme["gray-700"]};
 `;
 
 export const Title = styled.h1`
@@ -29,8 +29,8 @@ export const Form = styled.form`
     border-radius: 6px;
     padding: 0 10px;
 
-    background-color: ${({ theme }) => theme["gray-600"]};
-    color: ${({ theme }) => theme["gray-400"]};
+    background-color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
     border: none;
   }
 
@@ -39,24 +39,45 @@ export const Form = styled.form`
     height: 200px;
     border-radius: 6px;
 
-    background-color: ${({ theme }) => theme["gray-600"]};
-    color: ${({ theme }) => theme["gray-400"]};
+    background-color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
     border: none;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    display: block;
+    padding: 0 50px;
+    border-radius: 6px;
+    background-color: ${({ theme }) => theme["orange-700"]};
+    color: ${({ theme }) => theme.white};
+    font-weight: bold;
+    border: none;
+    text-decoration: none;
+    line-height: 40px;
+
+    &:hover {
+      filter: brightness(90%);
+      transition: filter 0.2s;
+    }
   }
 
   button {
     width: 150px;
     height: 40px;
-    margin-inline: calc(100% - 150px);
     border-radius: 6px;
-    background-color: ${({ theme }) => theme["green-300"]};
+    background-color: ${({ theme }) => theme["green-700"]};
     color: ${({ theme }) => theme.white};
     font-weight: bold;
     border: none;
     cursor: pointer;
 
     &:hover {
-      filter: brightness(85%);
+      filter: brightness(90%);
       transition: filter 0.2s;
     }
   }
